@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# script that audits DNS records for subdomains
+
+function audit {
+	local domain="$1"
+	local subdomain="$2"
+
+	if [ -z "$subdomain" ]; then
+		subdomains=("www" "lb-01" "web-01" "web-02")
+	else
+		subdomains=("$subdomain")
+	fi
+
+	for sub_d in "${subdomains[@]}"; do
+		record=$(dig "$sub_d.$domain" | awk '/ANSWER SECTION/ { getline; print $4 }')
+		dest=$(dig "$sub_d.$domain" | awk '/ANSWER SECTION/ { getline; print $5 }')
+		echo "The subdomain $sub_d is a $record record and points to $dest"
+	done
+}
+
+audit "$1" "$2"
