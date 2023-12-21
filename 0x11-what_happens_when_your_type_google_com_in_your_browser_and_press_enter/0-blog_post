@@ -1,0 +1,31 @@
+Title: The Journey of a URL: From Typing 'https://www.google.com' to Seeing Google's Homepage
+
+Introduction:
+Ever wondered what happens when you type "https://www.google.com" in your browser and press Enter? This simple action triggers a complex web of interactions, ensuring that Google's homepage loads on your screen efficiently and securely.
+
+1- DNS Request:
+First, the Domain Name System (DNS) translates "www.google.com" into an IP address, guiding your browser to the right server.
+
+2- TCP/IP Connection:
+A Transmission Control Protocol (TCP) connection is established, ensuring reliable communication, while Internet Protocol (IP) handles data routing.
+
+3- Firewall:
+Firewalls inspect the data packets, allowing or blocking them based on security protocols.
+
+4- HTTPS/SSL Handshake:
+The Hypertext Transfer Protocol Secure (HTTPS) with Secure Sockets Layer (SSL) encryption secures data transfer, protecting sensitive information.
+
+5- Load-Balancer:
+Google uses load balancers to distribute incoming traffic across multiple servers, preventing overload and ensuring smooth processing.
+
+6-Web Server:
+A web server processes the HTTP request and prepares the webpage for delivery.
+
+7- Application Server:
+For dynamic content, application servers generate real-time data, ensuring personalized experiences.
+
+8- Database:
+Databases provide the necessary data for dynamic content, further tailored by application servers.
+
+Conclusion:
+This journey from typing a URL to a webpage display is a symphony of technology, involving DNS, TCP/IP, firewalls, HTTPS/SSL, load-balancers, web servers, application servers, and databases. Each step is crucial for a fast, secure, and accurate webpage display, highlighting the complexity behind our daily internet use.
