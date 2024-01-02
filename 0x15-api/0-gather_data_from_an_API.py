@@ -1,28 +1,29 @@
 #!/usr/bin/python3
 ''' gather data from an api '''
-import requests
-import sys
-
-
-def main():
-    url = "https://jsonplaceholder.typicode.com/"
-    Eid = int(sys.argv[1])
-    completed = []
-    data = requests.get(url + 'todos').json()
-
-    total = 0
-    for employee in data:
-        if employee.get('userId') == Eid:
-            if employee.get('completed'):
-                completed.append(employee['title'])
-            total += 1
-
-    employee = requests.get(f'{url}users/{Eid}').json()
-    name = employee.get("name")
-    print(f'Employee {name} is done with tasks({len(completed)}/{total}):')
-    for title in completed:
-        print(f"\t {title}")
+from requests import get
+from sys import argv
 
 
 if __name__ == "__main__":
-    main()
+    data = get('https://jsonplaceholder.typicode.com/todos/').json()
+    total = 0
+    tasks = []
+    employees = get('https://jsonplaceholder.typicode.com/users').json()
+
+    for i in employees:
+        if i.get('id') == int(argv[1]):
+            employee = i.get('name')
+            break
+
+    for task in data:
+        if task.get('userId') == int(argv[1]):
+            total += 1
+
+            if task.get('completed') is True:
+                tasks.append(task.get('title'))
+
+    print("Employee {} is done with tasks({}/{}):".format(employee, len(tasks),
+                                                          total))
+
+    for i in tasks:
+        print("\t {}".format(i))
