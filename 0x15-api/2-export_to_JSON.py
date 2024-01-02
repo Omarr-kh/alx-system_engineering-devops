@@ -20,7 +20,7 @@ if __name__ == "__main__":
                      task.get("completed"), "username": e_name}
             tasks.append(entry)
 
-    employee_dict = {"f{user_id}": tasks}
+    employee_dict = {f"{user_id}": tasks}
 
     with open(f'{user_id}.json', 'w') as f:
         json.dump(employee_dict, f)
