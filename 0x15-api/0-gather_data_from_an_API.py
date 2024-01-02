@@ -5,9 +5,10 @@ import sys
 
 
 def main():
+    url = "https://jsonplaceholder.typicode.com/"
     id = int(sys.argv[1])
     completed = []
-    data = requests.get('https://jsonplaceholder.typicode.com/todos').json()
+    data = requests.get(url + 'todos').json()
 
     total = 0
     for employee in data:
@@ -16,7 +17,7 @@ def main():
                 completed.append(employee['title'])
             total += 1
 
-    employee = requests.get(f'https://jsonplaceholder.typicode.com/users/{id}').json()
+    employee = requests.get(f'{url}users/{id}').json()
     name = employee.get("name")
     print(f'Employee {name} is done with tasks({len(completed)}/{total}):')
     for title in completed:
