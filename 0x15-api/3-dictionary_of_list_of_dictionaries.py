@@ -3,31 +3,29 @@
 import json
 import requests
 
+
 if __name__ == '__main__':
-    employees_url = 'https://jsonplaceholder.typicode.com/users/'
-    employees_response = requests.get(employees_url)
-    employee_list = employees_response.json()
+    url = f'https://jsonplaceholder.typicode.com/users/'
+    users = requests.get(url).json()
 
-    all_tasks_json = {}
+    users_dict = {}
 
-    for employee in employee_list:
-        emp_id = employee.get('id')
-        emp_username = employee.get('username')
+    todos_url = 'https://jsonplaceholder.typicode.com/todos/'
+    todos = requests.get(url).json()
 
-        tasks_url = 'https://jsonplaceholder.typicode.com/todos/'
-        tasks_response = requests.get(tasks_url)
-        all_tasks = tasks_response.json()
-        filtered_tasks = [
-            task for task in all_tasks if task.get('userId') == emp_id]
+    for user in users:
+        user_id = user.get('id')
+        username = user.get('username')
 
-        formatted_tasks = []
-        for task in filtered_tasks:
-            task_info = {'username': emp_username, 'task': task.get('title'),
-                         'completed': task.get('completed')}
-            formatted_tasks.append(task_info)
+        user_tasks = [task for task in todos if task.get('userId') == user_id]
 
-        all_tasks_json[f'{emp_id}'] = formatted_tasks
+        tasks_json = []
+        for task in user_tasks:
+            entry = {'username': username, 'task': task.get('title'),
+                     'completed': task.get('completed')}
+            tasks_json.append(entry)
 
-    # Save the information to a JSON file:
+        users_dict[f'{user_id}'] = tasks_json
+
     with open('todo_all_employees.json', 'w') as f:
-        json.dump(all_tasks_json, f)
+        json.dump(users_dict, f)
