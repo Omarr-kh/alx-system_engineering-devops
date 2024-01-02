@@ -16,12 +16,11 @@ if __name__ == "__main__":
 
     for task in data:
         if task.get('userId') == user_id:
-            entry = {"task": task.get("title"),
-                    "completed": task.get("completed"),
-                    "username": e_name}
+            entry = {"task": task.get("title"), "completed":
+                     task.get("completed"), "username": e_name}
             tasks.append(entry)
 
-    employee_dict = {"f{user_id}" : tasks}
+    employee_dict = {"f{user_id}": tasks}
 
     with open(f'{user_id}.json', 'w') as f:
         json.dump(employee_dict, f)
