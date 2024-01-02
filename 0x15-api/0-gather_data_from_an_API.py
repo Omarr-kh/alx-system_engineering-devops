@@ -6,18 +6,18 @@ import sys
 
 def main():
     url = "https://jsonplaceholder.typicode.com/"
-    id = int(sys.argv[1])
+    Eid = int(sys.argv[1])
     completed = []
     data = requests.get(url + 'todos').json()
 
     total = 0
     for employee in data:
-        if employee.get('userId') == id:
+        if employee.get('userId') == Eid:
             if employee.get('completed'):
                 completed.append(employee['title'])
             total += 1
 
-    employee = requests.get(f'{url}users/{id}').json()
+    employee = requests.get(f'{url}users/{Eid}').json()
     name = employee.get("name")
     print(f'Employee {name} is done with tasks({len(completed)}/{total}):')
     for title in completed:
