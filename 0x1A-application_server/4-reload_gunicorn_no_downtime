@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 # Reload Gunicorn in a graceful way
 
-pgrep gunicorn | xargs kill -HUP
+if pgrep -f "gunicorn" >/dev/null; then
+  sudo pkill -P "gunicorn"
+fi
